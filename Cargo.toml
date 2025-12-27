@@ -1,0 +1,31 @@
+[package]
+name = "seq"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# MIDI
+coremidi = "0.8"              # macOS Core MIDI bindings
+midir = "0.10"                # Cross-platform MIDI (fallback/testing)
+
+# Audio (for dev sound engine)
+fluidlite = { version = "0.2", features = ["bindgen"] }  # FluidSynth lite bindings
+
+# Config
+serde = { version = "1.0", features = ["derive"] }
+serde_yaml = "0.9"
+toml = "0.8"
+
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+
+# Terminal UI
+ratatui = "0.28"              # TUI framework
+crossterm = "0.28"            # Terminal backend
+
+# Utilities
+anyhow = "1.0"                # Error handling
+thiserror = "1.0"             # Custom errors
+tracing = "0.1"               # Logging
+tracing-subscriber = "0.3"    # Log output
+rand = "0.8"                  # RNG for generative algorithms
