@@ -10,6 +10,7 @@ midir = "0.10"                # Cross-platform MIDI (fallback/testing)
 
 # Audio (for dev sound engine)
 fluidlite = { version = "0.2", features = ["bindgen"] }  # FluidSynth lite bindings
+cpal = "0.15"                 # Cross-platform audio I/O
 
 # Config
 serde = { version = "1.0", features = ["derive"] }
