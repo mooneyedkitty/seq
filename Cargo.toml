@@ -15,6 +15,7 @@ fluidlite = { version = "0.2", features = ["bindgen"] }  # FluidSynth lite bindi
 serde = { version = "1.0", features = ["derive"] }
 serde_yaml = "0.9"
 toml = "0.8"
+notify = "6.1"                # File system watcher for hot reload
 
 # Async runtime
 tokio = { version = "1", features = ["full"] }
@@ -29,3 +30,6 @@ thiserror = "1.0"             # Custom errors
 tracing = "0.1"               # Logging
 tracing-subscriber = "0.3"    # Log output
 rand = "0.8"                  # RNG for generative algorithms
+
+[dev-dependencies]
+tempfile = "3"                # Temporary files for testing

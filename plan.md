@@ -246,17 +246,29 @@ Create `src/midi/input.rs`:
 
 **Next:** Proceed to Step 2.5 - Commit Phase 2
 
-### Step 2.5: Commit Phase 2
+### Step 2.5: Commit Phase 2 ✅ COMPLETE
 ```bash
 git add -A
 git commit -m "Core MIDI infrastructure with clock and I/O"
 ```
 
+**Status:** Completed 2025-12-27
+- Commit 867bb25 created and pushed to origin
+- 7 files changed, 1494 insertions
+
+---
+
+## ✅ PHASE 2 COMPLETE
+
+Core MIDI infrastructure implemented with clock and I/O.
+
+**Next:** Proceed to Phase 3, Step 3.1 - Config Data Structures
+
 ---
 
 ## Phase 3: Configuration System
 
-### Step 3.1: Config Data Structures
+### Step 3.1: Config Data Structures ✅ COMPLETE
 Create `src/config/mod.rs` with serde structs:
 - `SongConfig`: name, tempo, key, scale
 - `TrackConfig`: name, channel, generator type, clips
@@ -266,7 +278,18 @@ Create `src/config/mod.rs` with serde structs:
 
 **Verify:** Sample YAML deserializes correctly, round-trip test passes
 
-### Step 3.2: File Watcher for Hot Reload
+**Status:** Completed 2025-12-27
+- Created `src/config/mod.rs` with all config structures
+- `SongFile` with `SongConfig`, `TrackConfig`, `PartConfig`
+- `ControlsFile` with `ControlMapping`, `MidiDeviceConfig`
+- `GeneratorConfig` with flexible key-value params
+- `TrackState` enum for active/muted/clip states
+- Load/save YAML and round-trip serialization
+- 31 tests pass (7 config tests + 24 previous)
+
+**Next:** Proceed to Step 3.2 - File Watcher for Hot Reload
+
+### Step 3.2: File Watcher for Hot Reload ✅ COMPLETE
 Create `src/config/watcher.rs`:
 - Watch config directory for changes
 - Debounce rapid changes
@@ -278,7 +301,18 @@ Create `src/config/watcher.rs`:
 - Config reloads without stopping playback
 - Invalid config shows error, keeps previous
 
-### Step 3.3: Scale & Key System
+**Status:** Completed 2025-12-27
+- Created `src/config/watcher.rs` with `ConfigWatcher` struct
+- `ConfigEvent` enum for reload events (Reloaded, Error, FileCreated, FileDeleted)
+- Uses `notify` crate (v6.1) for file system watching
+- Debouncing with configurable duration (default 500ms)
+- YAML validation before emitting reload events
+- Added `tempfile` dev dependency for testing
+- 36 tests pass (5 watcher tests + 31 previous)
+
+**Next:** Proceed to Step 3.3 - Scale & Key System
+
+### Step 3.3: Scale & Key System ✅ COMPLETE
 Create `src/music/scale.rs`:
 - Define Scale enum (Major, Minor variants, Modes, Pentatonic, etc.)
 - Note-to-scale-degree mapping
@@ -290,6 +324,17 @@ Create `src/music/scale.rs`:
 - Unit tests for all built-in scales
 - Transpose C4 up 3 scale degrees in D minor = F4
 - Custom scale from YAML works
+
+**Status:** Completed 2025-12-27
+- Created `src/music/mod.rs` and `src/music/scale.rs`
+- `Note` enum with all 12 pitch classes and transposition
+- `ScaleType` enum with 17 built-in scales (Major, modes, pentatonic, blues, etc.)
+- `Scale` struct with degree mapping, quantization, and transposition within scale
+- `Key` struct with relative/parallel/dominant/subdominant relationships
+- `ScaleRegistry` for custom scale definitions from config
+- 56 tests pass (20 scale tests + 36 previous)
+
+**Next:** Proceed to Step 3.4 - Commit Phase 3
 
 ### Step 3.4: Commit Phase 3
 ```bash
