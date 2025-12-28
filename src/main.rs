@@ -7,6 +7,7 @@ mod midi;
 mod music;
 mod sequencer;
 mod timing;
+mod ui;
 
 use anyhow::Result;
 use midi::{print_destinations, print_sources, CoreMidiOutput, MidiInput, MidiOutput};
