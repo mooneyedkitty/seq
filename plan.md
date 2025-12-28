@@ -163,7 +163,7 @@ All environment and project setup steps finished. Ready to proceed to Phase 2.
 
 ## Phase 2: Core MIDI Infrastructure
 
-### Step 2.1: MIDI Output Abstraction
+### Step 2.1: MIDI Output Abstraction ✅ COMPLETE
 Create `src/midi/mod.rs` with trait:
 ```rust
 pub trait MidiOutput: Send {
@@ -173,7 +173,15 @@ pub trait MidiOutput: Send {
 ```
 **Verify:** Code compiles, unit tests pass
 
-### Step 2.2: Core MIDI Backend (macOS)
+**Status:** Completed 2025-12-27
+- Created `src/midi/mod.rs` with `MidiOutput` trait
+- Added MIDI message constants module
+- Added MockMidiOutput for testing
+- 3 unit tests pass
+
+**Next:** Proceed to Step 2.2 - Core MIDI Backend (macOS)
+
+### Step 2.2: Core MIDI Backend (macOS) ✅ COMPLETE
 Create `src/midi/coremidi_backend.rs`:
 - Initialize Core MIDI client
 - Create virtual output port
@@ -185,7 +193,15 @@ Create `src/midi/coremidi_backend.rs`:
 - Run `cargo run -- --list-midi` shows available MIDI ports
 - Send test note to external synth or MIDI Monitor app
 
-### Step 2.3: MIDI Clock Implementation
+**Status:** Completed 2025-12-27
+- Created `src/midi/coremidi_backend.rs` with `CoreMidiOutput` struct
+- Implemented `MidiOutput` trait for Core MIDI
+- Added `--list-midi` and `--test-note` CLI commands
+- 5 tests pass (3 trait tests + 2 coremidi tests)
+
+**Next:** Proceed to Step 2.3 - MIDI Clock Implementation
+
+### Step 2.3: MIDI Clock Implementation ✅ COMPLETE
 Create `src/timing/clock.rs`:
 - BPM-based clock with configurable tempo
 - Generate MIDI clock messages (0xF8) at 24 PPQN
@@ -198,7 +214,17 @@ Create `src/timing/clock.rs`:
 - Tap tempo averages correctly
 - External synth syncs to clock
 
-### Step 2.4: MIDI Input Handling
+**Status:** Completed 2025-12-27
+- Created `src/timing/mod.rs` and `src/timing/clock.rs`
+- `MidiClock` struct with start/stop/pause/continue/tick methods
+- `TapTempo` for tap tempo calculation
+- `TempoRamp` for gradual tempo changes
+- Added `--test-clock <N> [BPM]` CLI command
+- 14 tests pass (9 clock tests + 5 previous)
+
+**Next:** Proceed to Step 2.4 - MIDI Input Handling
+
+### Step 2.4: MIDI Input Handling ✅ COMPLETE
 Create `src/midi/input.rs`:
 - Listen for MIDI input from controllers
 - Parse Note On/Off, CC, Program Change
@@ -209,6 +235,16 @@ Create `src/midi/input.rs`:
 - Controller input is received and logged
 - MIDI learn captures CC assignments
 - Clock slave mode syncs to external master
+
+**Status:** Completed 2025-12-27
+- Created `src/midi/input.rs` with `MidiInput` struct
+- `MidiMessage` enum for parsing all MIDI message types
+- `MidiLearnCapture` for learning controller assignments
+- `ExternalClockSync` for slave mode synchronization
+- Added `--list-sources` and `--monitor <N>` CLI commands
+- 24 tests pass (10 input tests + 14 previous)
+
+**Next:** Proceed to Step 2.5 - Commit Phase 2
 
 ### Step 2.5: Commit Phase 2
 ```bash
