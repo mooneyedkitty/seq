@@ -5,6 +5,7 @@ mod config;
 mod generators;
 mod midi;
 mod music;
+mod sequencer;
 mod timing;
 
 use anyhow::Result;
