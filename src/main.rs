@@ -2,6 +2,7 @@
 // Licensed under the MIT License. See LICENSE file in the project root for details.
 
 mod config;
+mod generators;
 mod midi;
 mod music;
 mod timing;
