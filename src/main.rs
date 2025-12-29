@@ -8,6 +8,7 @@ mod control;
 mod generators;
 mod midi;
 mod music;
+mod recording;
 mod sequencer;
 mod timing;
 mod ui;

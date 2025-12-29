@@ -928,7 +928,7 @@ Song and arrangement system implemented: parts, scenes, song mode.
 
 ## Phase 10: Recording & Export
 
-### Step 10.1: MIDI Recording
+### Step 10.1: MIDI Recording ✅ COMPLETE
 Create `src/recording/capture.rs`:
 - Record incoming MIDI to clip
 - Overdub and replace modes
@@ -940,24 +940,67 @@ Create `src/recording/capture.rs`:
 - Overdub adds notes
 - Quantization works
 
-### Step 10.2: Clip Freeze
+**Status:** Completed 2025-12-29
+- Created `src/recording/mod.rs` with main recording module
+- Created `src/recording/capture.rs` with `MidiRecorder`
+- `RecordMode`: Replace, Overdub, Punch
+- `RecordingState`: Idle, Armed, Recording, CountIn, Paused
+- `QuantizeSettings` with grid, strength, start/end options
+- `RecordedNote` with channel, note, velocity, timing
+- `PunchRegion` for punch in/out recording
+- Count-in support and loop recording
+- 22 unit tests pass
+
+### Step 10.2: Clip Freeze ✅ COMPLETE
 - Capture generator output to static clip
 - Save to config file format
 
 **Verify:** Frozen clip plays back identically to live generation
 
-### Step 10.3: MIDI File Export
+**Status:** Completed 2025-12-29
+- Created `src/recording/freeze.rs` with `ClipFreezer`
+- `FreezeOptions`: length (ticks/bars), velocity, quantize, merge, min note length
+- `FrozenNote` for captured note data
+- `FreezerState`: Idle, Capturing, Complete
+- Active note tracking for note on/off pairing
+- Quantization grid support
+- Overlapping note merging
+- 10 unit tests pass
+
+### Step 10.3: MIDI File Export ✅ COMPLETE
 Create `src/recording/export.rs`:
 - Export clips as standard MIDI files
 - Export full arrangement
 
 **Verify:** Exported MIDI opens in DAW correctly
 
-### Step 10.4: Commit Phase 10
+**Status:** Completed 2025-12-29
+- Created `src/recording/export.rs` with `MidiExporter`
+- `MidiFileFormat`: Type0 (single track), Type1 (multi-track)
+- `ExportTrack` with name, channel, notes, program
+- Variable-length quantity encoding for MIDI timing
+- Header chunk (MThd) and track chunk (MTrk) writing
+- Tempo and time signature meta events
+- Note on/off event generation with delta times
+- 7 unit tests pass
+
+### Step 10.4: Commit Phase 10 ✅ COMPLETE
 ```bash
 git add -A
 git commit -m "Recording and MIDI export"
 ```
+
+**Status:** Completed 2025-12-29
+- 282 tests pass (39 recording tests + 243 previous)
+- All recording components implemented with comprehensive test coverage
+
+---
+
+## ✅ PHASE 10 COMPLETE
+
+Recording and export system implemented: MIDI capture, clip freeze, MIDI file export.
+
+**Next:** Proceed to Phase 11, Step 11.1 - Integration Tests
 
 ---
 
