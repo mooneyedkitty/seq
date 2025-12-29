@@ -845,7 +845,7 @@ Development sound engine implemented: FluidSynth wrapper and cpal audio output.
 
 ## Phase 9: Song & Arrangement
 
-### Step 9.1: Parts System
+### Step 9.1: Parts System ✅ COMPLETE
 Create `src/arrangement/part.rs`:
 - Part definitions (collections of clip/generator states)
 - Part transitions (cut, quantized)
@@ -856,7 +856,16 @@ Create `src/arrangement/part.rs`:
 - Transitions respect quantization
 - Macros execute all changes
 
-### Step 9.2: Scene System
+**Status:** Completed 2025-12-29
+- Created `src/arrangement/mod.rs` with main arrangement module
+- Created `src/arrangement/part.rs` with `Part`, `PartManager`
+- `TrackClipState`: Empty, Clip, Generator, Stop, Hold
+- `PartTransition`: Immediate, NextBeat, NextBar, Beats(n), Bars(n), EndOfPhrase, Crossfade
+- `MacroAction` for tempo, parameters, mute/solo, MIDI messages
+- Quantized transition scheduling with pending queue
+- 11 unit tests pass
+
+### Step 9.2: Scene System ✅ COMPLETE
 Create `src/arrangement/scene.rs`:
 - Scenes as track state snapshots
 - Scene matrix (tracks x scenes)
@@ -866,7 +875,16 @@ Create `src/arrangement/scene.rs`:
 - Scenes capture and restore track states
 - Follow actions work
 
-### Step 9.3: Song Mode
+**Status:** Completed 2025-12-29
+- Created `src/arrangement/scene.rs` with `Scene`, `SceneManager`
+- `SceneSlot`: Empty, Clip, Generator, Stop, Hold
+- `SceneLaunchMode`: Immediate, Beat, Bar, Beats(n), Bars(n)
+- Matrix-style track × scene slot access
+- Follow actions with configurable bar count
+- Scene navigation (next/prev with wrap)
+- 10 unit tests pass
+
+### Step 9.3: Song Mode ✅ COMPLETE
 Create `src/arrangement/song.rs`:
 - Ordered arrangement of parts
 - Position in arrangement
@@ -878,11 +896,33 @@ Create `src/arrangement/song.rs`:
 - Looping works
 - Can jump to any part
 
-### Step 9.4: Commit Phase 9
+**Status:** Completed 2025-12-29
+- Created `src/arrangement/song.rs` with `Song`, `SongPlayer`
+- `SongSection`: Part name, length, tempo, time signature, scene index
+- `SongPosition`: Section, bar, beat, tick with formatting
+- `LoopRegion`: Start/end sections with repeat count
+- `SongPlayer`: Play/pause/stop, goto section, loop control
+- Position calculation from ticks to section/bar/beat
+- Metadata support for song info
+- 10 unit tests pass
+
+### Step 9.4: Commit Phase 9 ✅ COMPLETE
 ```bash
 git add -A
 git commit -m "Song and arrangement: parts, scenes, song mode"
 ```
+
+**Status:** Completed 2025-12-29
+- 243 tests pass (34 arrangement tests + 209 previous)
+- All arrangement components implemented with comprehensive test coverage
+
+---
+
+## ✅ PHASE 9 COMPLETE
+
+Song and arrangement system implemented: parts, scenes, song mode.
+
+**Next:** Proceed to Phase 10, Step 10.1 - MIDI Recording
 
 ---
 
